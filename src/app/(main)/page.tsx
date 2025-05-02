@@ -12,9 +12,9 @@ const sections = [
     title: 'Model Y',
     description: 'Starting at $41,490', // Keep original price if not specified
     subDescription: 'After $7,500 Federal Tax Credit',
-    imageUrl: 'https://picsum.photos/seed/tesla-model-y-forest-snow/1920/1080', // Updated image URL
-    imageAlt: 'Tesla Model Y driving through a snowy forest', // Updated alt text
-    imageHint: 'tesla model y silver forest snow driving', // Updated hint
+    imageUrl: 'https://picsum.photos/seed/tesla-model-y-road-mountains/1920/1080', // Updated image URL
+    imageAlt: 'Tesla Model Y driving on a road with mountains in the background', // Updated alt text
+    imageHint: 'tesla model y silver road mountains driving', // Updated hint
     orderLink: '/model-y/customize', // Updated link
     learnMoreLink: '#', // Add actual link
     button1Text: 'Order Now',
@@ -22,13 +22,12 @@ const sections = [
     showArrow: false,
   },
   {
-    id: 'model-s', // Changed to Cybertruck as requested by image hint
-    title: 'Cybertruck', // Changed title
+    id: 'model-s', // Represents Cybertruck
+    title: 'Cybertruck',
     description: 'Starting at $ 45,000', // User requested price for Model S, applying to Cybertruck here
-    // subDescription: 'Better Utility Than A Truck With More Performance Than A Sports Car', // Cybertruck tagline
-    imageUrl: 'https://picsum.photos/seed/tesla-cybertruck-terrain/1920/1080', // Tesla Cybertruck image
-    imageAlt: 'Tesla Cybertruck on rough terrain',
-    imageHint: 'tesla cybertruck silver terrain offroad',
+    imageUrl: 'https://picsum.photos/seed/tesla-cybertruck-desert-road/1920/1080', // Updated image URL for Cybertruck
+    imageAlt: 'Tesla Cybertruck driving on a desert road', // Updated alt text for Cybertruck
+    imageHint: 'tesla cybertruck silver desert road driving', // Updated hint for Cybertruck
     orderLink: '/model-s/customize', // Link might need update if it's for Cybertruck
     learnMoreLink: '/model-s', // Link might need update
     button1Text: 'Order Now',
@@ -39,7 +38,6 @@ const sections = [
     id: 'model-3',
     title: 'Model 3',
     description: 'Lease from $779/Month', // User requested description
-    // subDescription: 'The future of driving is here.',
     imageUrl: 'https://picsum.photos/seed/tesla-model-3-red-road/1920/1080', // Tesla car image
     imageAlt: 'Red Tesla Model 3 on the road',
     imageHint: 'tesla model 3 red road driving',

@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -11,9 +12,9 @@ const sections = [
     title: 'Model Y',
     description: 'Starting at $41,490', // Keep original price if not specified
     subDescription: 'After $7,500 Federal Tax Credit',
-    imageUrl: 'https://picsum.photos/seed/tesla-model-y-mountains/1920/1080', // Tesla car image
-    imageAlt: 'Tesla Model Y driving in mountains',
-    imageHint: 'tesla model y silver mountains driving',
+    imageUrl: 'https://picsum.photos/seed/tesla-model-y-forest-snow/1920/1080', // Updated image URL
+    imageAlt: 'Tesla Model Y driving through a snowy forest', // Updated alt text
+    imageHint: 'tesla model y silver forest snow driving', // Updated hint
     orderLink: '/model-y/customize', // Updated link
     learnMoreLink: '#', // Add actual link
     button1Text: 'Order Now',

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
-// import { GeistMono } from 'geist/font/mono'; // Removed as it's causing errors and not explicitly used
+// Using system font stack for closer resemblance to Tesla's font
+// import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"; // Import Toaster
 
 export const metadata: Metadata = {
-  title: 'ElectroDrive',
+  title: 'TESLA', // Updated title
   description: 'Experience the future of driving.',
 };
 
@@ -16,8 +16,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="!scroll-smooth">
-      {/* Using GeistSans for both sans and mono for now */}
-      <body className={`${GeistSans.variable} font-sans antialiased`}>
+      {/* Use system font stack */}
+      <body className={`antialiased`}>
         {children}
         <Toaster /> {/* Add Toaster component */}
       </body>

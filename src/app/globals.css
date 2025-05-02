@@ -14,7 +14,7 @@ body {
     --card-foreground: 240 5% 15%; /* Match foreground */
     --popover: 0 0% 100%; /* Match background */
     --popover-foreground: 240 5% 15%; /* Match foreground */
-    --primary: 221 71% 56%; /* Tesla Blue (#3E6AE1) */
+    --primary: 221 71% 56%; /* Tesla Blue (#3E6AE1) / Adjusted slightly for better contrast */
     --primary-foreground: 0 0% 100%; /* White */
     --secondary: 240 5% 96%; /* Lighter Gray for buttons */
     --secondary-foreground: 240 5% 20%; /* Dark Gray for button text */
@@ -46,7 +46,7 @@ body {
     /* Dark theme adjustments can be made here if needed */
     --background: 240 5% 10%; /* Dark Background */
     --foreground: 0 0% 98%; /* White Foreground */
-    --card: 240 5% 10%; /* Match background */
+    --card: 240 5% 15%; /* Slightly lighter card background */
     --card-foreground: 0 0% 98%; /* Match foreground */
     --popover: 240 5% 10%; /* Match background */
     --popover-foreground: 0 0% 98%; /* Match foreground */
@@ -85,19 +85,24 @@ body {
   }
   body {
     @apply bg-background text-foreground;
-    scroll-behavior: smooth;
+    /* Removed scroll-behavior: smooth; as it can interfere with page rendering */
   }
-  section {
+  /* REMOVED: Global section height and snap styles */
+  /* section {
     @apply h-screen w-full snap-start flex flex-col items-center justify-between relative overflow-hidden;
-    /* Add padding top to account for fixed navbar height (14 * 4 = 56px approx) */
     padding-top: 60px;
-  }
-  html {
+  } */
+  /* REMOVED: HTML snap styles */
+  /* html {
     scroll-snap-type: y mandatory;
+  } */
+
+   html {
     font-smooth: antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   .tesla-logo {
     /* Use Tailwind tracking for letter spacing */
     /* letter-spacing: 0.2em; */
@@ -107,26 +112,25 @@ body {
 }
 
 @layer components {
+   /* Styles for the full-screen sections on the home page */
   .section-background {
-      /* Ensure background is behind content */
       @apply absolute inset-0 w-full h-full object-cover z-0 brightness-90;
   }
   .section-content {
-      /* Adjust top padding to be below navbar, but relative positioning is better */
-      @apply relative z-10 flex flex-col items-center pt-16 md:pt-24 text-center px-4;
+      /* Adjust top padding to be below navbar */
+      @apply relative z-10 flex flex-col items-center pt-20 md:pt-24 text-center px-4;
   }
   .section-buttons {
-      /* Adjust bottom padding */
       @apply relative z-10 flex flex-col md:flex-row gap-4 md:gap-6 pb-12 md:pb-16 px-4;
   }
 
   /* Custom button styles to match image */
   .btn-tesla-primary {
     /* Darker, less saturated primary button */
-    @apply bg-gray-800/90 text-white hover:bg-gray-700/90;
+    @apply bg-gray-800/90 text-white hover:bg-gray-700/90 dark:bg-gray-300/80 dark:text-gray-900 dark:hover:bg-gray-300/90;
   }
   .btn-tesla-secondary {
      /* Lighter secondary button with slight transparency */
-    @apply bg-gray-200/80 text-gray-800 hover:bg-gray-200/100 backdrop-blur-sm;
+    @apply bg-gray-200/80 text-gray-800 hover:bg-gray-200/100 backdrop-blur-sm dark:bg-gray-700/70 dark:text-white dark:hover:bg-gray-700/90;
   }
 }

@@ -14,7 +14,7 @@ const sections = [
     imageUrl: 'https://picsum.photos/seed/tesla-model-y-mountains/1920/1080', // Tesla car image
     imageAlt: 'Tesla Model Y driving in mountains',
     imageHint: 'tesla model y silver mountains driving',
-    orderLink: '#', // Add actual link
+    orderLink: '/model-y/customize', // Updated link
     learnMoreLink: '#', // Add actual link
     button1Text: 'Order Now',
     button2Text: 'Learn More',

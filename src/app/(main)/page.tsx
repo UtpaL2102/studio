@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -12,7 +14,7 @@ const sections = [
     imageUrl: 'https://picsum.photos/seed/models/1920/1080',
     imageAlt: 'Tesla Model S',
     imageHint: 'electric car silver',
-    orderLink: '/model-s/order',
+    orderLink: '/model-s/customize', // Updated link
     learnMoreLink: '/model-s',
     showArrow: true,
   },
@@ -23,7 +25,7 @@ const sections = [
     imageUrl: 'https://picsum.photos/seed/model3/1920/1080',
     imageAlt: 'Tesla Model 3',
     imageHint: 'electric car red side profile',
-    orderLink: '/model-3/order',
+    orderLink: '/model-3/customize', // Updated link
     learnMoreLink: '/model-3',
     showArrow: true,
   },
@@ -34,7 +36,7 @@ const sections = [
     imageUrl: 'https://picsum.photos/seed/solar/1920/1080',
     imageAlt: 'Solar panels on a roof',
     imageHint: 'solar panels roof house',
-    orderLink: '/solar-panels/order',
+    orderLink: '/solar-panels/order', // Needs a dedicated order/quote page
     learnMoreLink: '/solar-panels',
     showArrow: false, // Last section doesn't need an arrow
   },

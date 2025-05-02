@@ -3,34 +3,33 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowDown, CircleUser } from 'lucide-react'; // Assuming CircleUser for Schedule icon
 
-// Data for sections - updated to match Tesla structure
+// Data for sections - updated to match Tesla structure and user request
 const sections = [
    {
     id: 'model-y',
     title: 'Model Y',
-    description: 'Starting at $41,490',
+    description: 'Starting at $41,490', // Keep original price if not specified
     subDescription: 'After $7,500 Federal Tax Credit',
-    imageUrl: 'https://picsum.photos/seed/modely/1920/1080', // Replace with actual Model Y image
-    imageAlt: 'Tesla Model Y',
-    imageHint: 'electric car silver suv mountains',
+    imageUrl: 'https://picsum.photos/seed/tesla-model-y-mountains/1920/1080', // Tesla car image
+    imageAlt: 'Tesla Model Y driving in mountains',
+    imageHint: 'tesla model y silver mountains driving',
     orderLink: '#', // Add actual link
     learnMoreLink: '#', // Add actual link
     button1Text: 'Order Now',
     button2Text: 'Learn More',
-    showArrow: false, // Tesla homepage doesn't typically show arrows between main sections
+    showArrow: false,
   },
   {
-    id: 'model-s',
-    title: 'Model S',
-    description: 'Starting at $45,000', // Updated price
-    // subDescription: 'Experience the pinnacle of electric performance.', // Original subDescription if needed
-    imageUrl: 'https://picsum.photos/seed/models/1920/1080',
-    imageAlt: 'Tesla Model S',
-    imageHint: 'electric car silver',
-    orderLink: '/model-s/customize',
-    learnMoreLink: '/model-s',
+    id: 'model-s', // Changed to Cybertruck as requested by image hint
+    title: 'Cybertruck', // Changed title
+    description: 'Starting at $ 45,000', // User requested price for Model S, applying to Cybertruck here
+    // subDescription: 'Better Utility Than A Truck With More Performance Than A Sports Car', // Cybertruck tagline
+    imageUrl: 'https://picsum.photos/seed/tesla-cybertruck-terrain/1920/1080', // Tesla Cybertruck image
+    imageAlt: 'Tesla Cybertruck on rough terrain',
+    imageHint: 'tesla cybertruck silver terrain offroad',
+    orderLink: '/model-s/customize', // Link might need update if it's for Cybertruck
+    learnMoreLink: '/model-s', // Link might need update
     button1Text: 'Order Now',
     button2Text: 'Learn More',
     showArrow: false,
@@ -38,11 +37,11 @@ const sections = [
   {
     id: 'model-3',
     title: 'Model 3',
-    description: 'Lease from $779/Month', // Updated description
-    // subDescription: 'The future of driving is here.', // Original subDescription if needed
-    imageUrl: 'https://picsum.photos/seed/model3/1920/1080',
-    imageAlt: 'Tesla Model 3',
-    imageHint: 'electric car red side profile',
+    description: 'Lease from $779/Month', // User requested description
+    // subDescription: 'The future of driving is here.',
+    imageUrl: 'https://picsum.photos/seed/tesla-model-3-red-road/1920/1080', // Tesla car image
+    imageAlt: 'Red Tesla Model 3 on the road',
+    imageHint: 'tesla model 3 red road driving',
     orderLink: '/model-3/customize',
     learnMoreLink: '/model-3',
     button1Text: 'Order Now',
@@ -53,16 +52,16 @@ const sections = [
     id: 'solar-panels',
     title: 'Solar Panels',
     description: 'Lowest Cost Solar Panels in America',
-    imageUrl: 'https://picsum.photos/seed/solar/1920/1080',
-    imageAlt: 'Solar panels on a roof',
-    imageHint: 'solar panels roof house',
+    imageUrl: 'https://picsum.photos/seed/tesla-solar-panels-roof/1920/1080', // Solar panels image
+    imageAlt: 'Solar panels installed on a house roof',
+    imageHint: 'solar panels house roof modern',
     orderLink: '/solar-panels/order',
     learnMoreLink: '/solar-panels',
     button1Text: 'Order Now',
     button2Text: 'Learn More',
     showArrow: false,
   },
-  // Add more sections like Model X, Cybertruck, Solar Roof etc. as needed
+  // Add more sections like Model X, Solar Roof etc. if needed
 ];
 
 export default function Home() {
@@ -70,22 +69,25 @@ export default function Home() {
     <div className="relative">
       {/* Map through sections */}
       {sections.map((section, index) => (
-        <section key={section.id} id={section.id} className="h-screen w-full snap-start flex flex-col items-center justify-between relative overflow-hidden pt-[60px]"> {/* Added padding top for fixed navbar */}
+        <section key={section.id} id={section.id} className="h-screen w-full snap-start flex flex-col items-center justify-between relative overflow-hidden"> {/* Adjusted pt-[60px] is handled by globals.css */}
           {/* Background Image */}
-          <Image
-            src={section.imageUrl}
-            alt={section.imageAlt}
-            layout="fill"
-            objectFit="cover"
-            quality={90}
-            priority={index === 0} // Prioritize loading the first image
-            className="section-background"
-            data-ai-hint={section.imageHint}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent z-0"></div> {/* Optional subtle gradient */}
+          <div className="absolute inset-0 z-0"> {/* Image container */}
+            <Image
+              src={section.imageUrl}
+              alt={section.imageAlt}
+              layout="fill"
+              objectFit="cover"
+              quality={90}
+              priority={index === 0} // Prioritize loading the first image
+              className="section-background"
+              data-ai-hint={section.imageHint}
+            />
+             <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent z-1"></div> {/* Optional subtle gradient overlay */}
+          </div>
+
 
           {/* Content: Title & Description */}
-          <div className="section-content animate-fade-in-up text-white"> {/* Ensure text is visible */}
+          <div className="section-content text-white"> {/* Ensure text is visible */}
              <h1 className="text-4xl md:text-5xl font-semibold mb-1">{section.title}</h1>
              <p className="text-sm md:text-base">{section.description}</p>
              {section.subDescription && (
@@ -94,33 +96,28 @@ export default function Home() {
           </div>
 
           {/* Buttons */}
-           <div className="flex flex-col items-center w-full animate-fade-in-up animation-delay-300 pb-16 md:pb-20"> {/* Adjusted padding */}
+           <div className="flex flex-col items-center w-full pb-16 md:pb-20 z-10"> {/* Buttons need z-index */}
              <div className="section-buttons">
                <Link href={section.orderLink} passHref legacyBehavior>
                  <Button size="lg" className="w-64 btn-tesla-primary"> {/* Use primary button style */}
                    {section.button1Text}
                  </Button>
                </Link>
-               <Link href={section.learnMoreLink} passHref legacyBehavior>
-                 <Button size="lg" className="w-64 btn-tesla-secondary"> {/* Use secondary button style */}
-                   {section.button2Text}
-                 </Button>
-               </Link>
+               {section.button2Text && ( // Conditionally render second button
+                 <Link href={section.learnMoreLink} passHref legacyBehavior>
+                   <Button size="lg" className="w-64 btn-tesla-secondary"> {/* Use secondary button style */}
+                     {section.button2Text}
+                   </Button>
+                 </Link>
+               )}
              </div>
           </div>
         </section>
       ))}
 
-      {/* Schedule Drive Button - Fixed at bottom center */}
-      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-20">
-        <Button variant="outline" className="bg-white/90 backdrop-blur-sm hover:bg-white shadow-md text-sm px-6 py-2 h-auto">
-          {/* Replace with appropriate icon if needed */}
-          {/* <CircleUser className="mr-2 h-4 w-4" /> */}
-          Schedule a Drive Today
-        </Button>
-      </div>
+      {/* Removed Schedule Drive Button */}
 
-      {/* CSS for Animations */}
+      {/* CSS for Animations (Keep if needed, but may not be necessary for static look) */}
       <style jsx>{`
         @keyframes fadeInUp {
           from {
@@ -132,13 +129,16 @@ export default function Home() {
             transform: translateY(0);
           }
         }
-        .animate-fade-in-up {
-          animation: fadeInUp 0.8s ease-out forwards; /* Slightly faster animation */
+        .section-content, .section-buttons {
+          animation: fadeInUp 0.8s ease-out forwards;
           opacity: 0; /* Start hidden */
         }
-        .animation-delay-300 {
-          animation-delay: 0.3s;
+         /* Ensure animation runs for buttons too */
+        .flex.flex-col.items-center.w-full {
+            animation: fadeInUp 0.8s ease-out 0.3s forwards; /* Delay button animation slightly */
+            opacity: 0;
         }
+
 
         /* Ensure text visibility against various backgrounds */
         .section-content h1, .section-content p {

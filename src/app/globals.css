@@ -89,6 +89,8 @@ body {
   }
   section {
     @apply h-screen w-full snap-start flex flex-col items-center justify-between relative overflow-hidden;
+    /* Add padding top to account for fixed navbar height (14 * 4 = 56px approx) */
+    padding-top: 60px;
   }
   html {
     scroll-snap-type: y mandatory;
@@ -97,27 +99,34 @@ body {
     -moz-osx-font-smoothing: grayscale;
   }
   .tesla-logo {
-    letter-spacing: 0.2em;
+    /* Use Tailwind tracking for letter spacing */
+    /* letter-spacing: 0.2em; */
+    @apply tracking-[0.2em];
     font-weight: 600;
   }
 }
 
 @layer components {
   .section-background {
-      @apply absolute top-0 left-0 w-full h-full object-cover z-0 brightness-90; /* Slightly darken bg images */
+      /* Ensure background is behind content */
+      @apply absolute inset-0 w-full h-full object-cover z-0 brightness-90;
   }
   .section-content {
-      @apply relative z-10 flex flex-col items-center pt-24 md:pt-32 text-center px-4;
+      /* Adjust top padding to be below navbar, but relative positioning is better */
+      @apply relative z-10 flex flex-col items-center pt-16 md:pt-24 text-center px-4;
   }
   .section-buttons {
-      @apply relative z-10 flex flex-col md:flex-row gap-4 md:gap-6 pb-16 md:pb-20 px-4;
+      /* Adjust bottom padding */
+      @apply relative z-10 flex flex-col md:flex-row gap-4 md:gap-6 pb-12 md:pb-16 px-4;
   }
 
   /* Custom button styles to match image */
   .btn-tesla-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    /* Darker, less saturated primary button */
+    @apply bg-gray-800/90 text-white hover:bg-gray-700/90;
   }
   .btn-tesla-secondary {
-    @apply bg-secondary/80 text-secondary-foreground hover:bg-secondary/100 backdrop-blur-sm;
+     /* Lighter secondary button with slight transparency */
+    @apply bg-gray-200/80 text-gray-800 hover:bg-gray-200/100 backdrop-blur-sm;
   }
 }

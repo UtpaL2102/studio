@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -7,27 +8,17 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
-// Top banner component
-function TopBanner() {
-  // Simple banner, can be made dismissible or dynamic later
-  return (
-    <div className="bg-yellow-100 text-center py-2 px-4 text-sm text-yellow-900">
-      We're celebrating Earth Day.{' '}
-      <Link href="#" className="font-semibold underline hover:text-yellow-700">
-        Learn More
-      </Link>
-    </div>
-  );
-}
+// Removed TopBanner component
 
 const mainNavItems = [
-  { label: 'Vehicles', href: '#' }, // Replace # with actual links later
+  { label: 'Vehicles', href: '#' }, // Updated to match image
   { label: 'Energy', href: '#' },
   { label: 'Charging', href: '#' },
   { label: 'Discover', href: '#' },
   { label: 'Shop', href: '#' },
 ];
 
+// Updated order and icons to match image
 const accountNavItems = [
   { label: 'Help', href: '#', icon: HelpCircle },
   { label: 'Language', href: '#', icon: Globe },
@@ -40,7 +31,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      // Make navbar background appear only when scrolled down significantly
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -51,18 +43,18 @@ export default function Navbar() {
 
   return (
     <>
-      <TopBanner />
+      {/* Removed TopBanner */}
       <header
         className={cn(
-          'fixed top-[40px] left-0 right-0 z-50 transition-colors duration-300', // Adjusted top position due to banner
-          isScrolled ? 'bg-white/80 backdrop-blur-sm shadow-sm' : 'bg-transparent'
+          'fixed top-0 left-0 right-0 z-50 transition-colors duration-300', // Navbar starts at the top
+          isScrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-transparent' // Transparent when not scrolled
         )}
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className={cn(
-              "text-xl font-semibold tesla-logo", // Using tesla-logo class from globals.css
-              isScrolled ? 'text-black' : 'text-white mix-blend-difference' // Adjust text color based on scroll
+              "text-2xl font-semibold tracking-[0.2em]", // Use tracking for letter spacing like tesla-logo class
+              isScrolled ? 'text-black' : 'text-white' // Always white when transparent
             )}>
             TESLA
           </Link>
@@ -74,8 +66,8 @@ export default function Navbar() {
                 <li key={item.label}>
                   <Link href={item.href} passHref legacyBehavior>
                     <a className={cn(
-                      "text-sm font-medium px-3 py-2 rounded-md hover:bg-black/5 transition-colors",
-                      isScrolled ? 'text-gray-800 hover:bg-gray-200' : 'text-white mix-blend-difference hover:bg-white/10'
+                      "text-sm font-medium px-3 py-2 rounded-md hover:bg-black/10 transition-colors", // Subtle hover
+                      isScrolled ? 'text-gray-800 hover:bg-gray-200/80' : 'text-white hover:bg-white/15' // White text when transparent
                       )}>
                       {item.label}
                     </a>
@@ -93,7 +85,7 @@ export default function Navbar() {
                   <Link href={item.href} passHref legacyBehavior>
                     <Button variant="ghost" size="icon" className={cn(
                       "rounded-full",
-                      isScrolled ? 'text-gray-700 hover:bg-gray-200' : 'text-white mix-blend-difference hover:bg-white/10'
+                      isScrolled ? 'text-gray-700 hover:bg-gray-200/80' : 'text-white hover:bg-white/15' // White icon when transparent
                       )}>
                       <item.icon className="h-5 w-5" />
                       <span className="sr-only">{item.label}</span>
@@ -106,13 +98,18 @@ export default function Navbar() {
             {/* Mobile Menu Trigger */}
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild className="lg:hidden ml-2">
-                <Button variant="ghost" size="icon" className={cn(
-                   "rounded-md",
-                   isScrolled ? 'text-gray-700 hover:bg-gray-200' : 'text-white mix-blend-difference hover:bg-white/10'
-                  )}>
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
+                 {/* Use Button component for SheetTrigger */}
+                 <Button
+                    variant="ghost"
+                    size="icon"
+                    className={cn(
+                       "rounded-md p-1", // Added padding
+                       isScrolled ? 'text-gray-700 hover:bg-gray-200/80' : 'text-white hover:bg-white/15' // White icon when transparent
+                    )}
+                    aria-label="Open menu"
+                 >
+                    <Menu className="h-6 w-6" />
+                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-full sm:w-80 bg-white text-black p-0">
                  <div className="flex justify-end p-4 border-b">
@@ -122,7 +119,7 @@ export default function Navbar() {
                     </Button>
                 </div>
                 <ul className="flex flex-col space-y-1 p-4">
-                  {[...mainNavItems, ...accountNavItems].map((item) => (
+                  {[...mainNavItems, ...accountNavItems].map((item) => ( // Combine menus for mobile
                     <li key={item.label}>
                       <Link href={item.href} passHref legacyBehavior>
                         <a className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 transition-colors" onClick={() => setMobileMenuOpen(false)}>

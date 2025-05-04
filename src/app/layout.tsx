@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 // import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"; // Import Toaster
+import { AuthProvider } from '@/contexts/AuthContext';
 
 export const metadata: Metadata = {
   title: 'TESLA', // Updated title
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="en" className="!scroll-smooth">
       {/* Use system font stack */}
       <body className={`antialiased`}>
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
         <Toaster /> {/* Add Toaster component */}
       </body>
     </html>

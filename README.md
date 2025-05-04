@@ -182,7 +182,6 @@ The project uses Tailwind CSS with custom Tesla-specific styles defined in `glob
 
 ## Future Enhancements
 
-- User authentication and accounts
 - Vehicle customization pages
 - Order processing functionality
 - Test drive scheduling
